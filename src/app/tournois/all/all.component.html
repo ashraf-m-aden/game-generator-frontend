@@ -1,0 +1,28 @@
+<!-- ICI l'utilisateur choisit de charger la liste ou d'en creer une nouvelle -->
+<div class="row pt-5">
+  <div class="col-12 col-md-6">
+    <button class="btn btn-group btn-success mb-5" [routerLink]="[ '/nouveau-tournoi']">Nouveau tournoi</button>
+    <table class="table table-striped table-light">
+      <thead>
+        <tr class="bg-light font-weight-bold">
+          <td>Tournoi</td>
+          <td>Nombre d'equipe</td>
+          <td>Nombre de groupe</td>
+          <td>Action</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tournoi of tournois">
+          <td>{{tournoi?.name}}</td>
+          <td>{{tournoi?.teams.length}}</td>
+          <td>{{tournoi?.groups}}</td>
+          <td>
+            <button class="btn btn-group btn-primary p-1" [routerLink]="['/tournois/'+ tournoi.id]">Voir</button>
+            | <button class="btn btn-group btn-danger p-1" (click)="removeTournoi(tournoi?.id)">Supprimer</button>
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

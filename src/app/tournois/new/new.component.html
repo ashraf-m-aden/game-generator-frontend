@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col-12 mt-5"  *ngIf="stepOne">
+    <p class="font-weight-bold italic">Quel est le nom du tournoi?</p>
+    <input type="text" class="ml-auto mr-auto form-control col-12 col-md-6" [(ngModel)]="tournoi">
+    <button class="btn btn-group btn-light mt-5 ml-auto" (click)="paginate()"> Enregistrer</button>
+  </div>
+  <div class="col-12"[hidden]="!stepTwo">
+    <h3 class="font-weight-bold font-italic text-light">{{tournoi}}</h3>
+  </div>
+  <div class="col-12 col-md-3"  [hidden]="!stepTwo">
+    <p>Combien d'equipes?</p>
+    <div class=" d-flex justify-content-around">
+      <button type="button" class="btn p-1 btn-danger" (click)="minusTeam()">Moins</button>
+      <span class="mt-auto number">{{teamsNumber}}</span>
+      <button type="button" class="btn btn-success p-1" (click)="plusTeam()">Plus</button>
+    </div>
+  </div>
+  <div class="col-12 col-md-3"  [hidden]="!stepTwo">
+    <p>Combien de groupes?</p>
+    <div class=" d-flex justify-content-around">
+      <button type="button" class="btn  p-1 btn-danger" (click)="minusGroup()">Moins</button>
+      <span class="mt-auto number">{{groupNumber}}</span>
+      <button type="button" class="btn btn-success p-1" (click)="plusGroup()">Plus</button>
+    </div>
+  </div>
+  <div class="col-12 col-md-6" id="table_div"  [hidden]="!stepTwo">
+  </div>
+  <div class="col-12 text-center mt-5"  [hidden]="!stepTwo">
+    <button class="btn btn-primary mr-auto ml-auto" (click)="save()" [disabled]="(this.teamsNumber % this.groupNumber) !== 0 || this.teamsNumber === 0">Enregistrer</button>
+  </div>
+</div>

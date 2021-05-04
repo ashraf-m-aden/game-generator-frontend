@@ -1,0 +1,75 @@
+<div class="row details">
+<div class="col-12">
+  <div class="row">
+    <div class="col-12 col-md-6  pt-5">
+      <h3 class="light h3 font-weight-bold font-italic font">{{tournoi?.name}}</h3>
+      <p class="font-weight-bold">Le tableau des equipes</p>
+      <div id="table_div" class="d-flex"></div>
+    </div>
+    <div class="col-12 col-md-6 pt-5">
+      <p class="font-weight-bold">Parametres des matches phase de groupes</p>
+      <table class="table table-striped">
+        <tr class="table">
+        <tr class="mt-2">
+          <td class="mt-2" colspan="3">Aller retour</td>
+          <td colspan="3"><input type="checkbox" class="form-control" name="" id="" [(ngModel)]="settings.away"></td>
+        </tr>
+        <tr class="mt-2 form-group">
+          <td colspan="3" class=" "><input class="form-check-input" (click)='check($event)' type="radio" name="radio"
+              id="jp">
+            <label class="form-check-label" for="jp">Jours prédefinis</label></td>
+          <td colspan="3" class=""><input class="form-check-input" (click)='check($event)' type="radio" name="radio"
+              id="ij">
+            <label class="form-check-label" for="ij">Intervalles de jours</label></td>
+        </tr>
+        <tr *ngIf="settings.intervalDays">
+          <td colspan="2">
+            <input type="number" class="form-control" [(ngModel)]="settings.interval" id="">
+          </td>
+        </tr>
+        <tr class="mt-2" *ngIf="settings.predefinedDays">
+          <td><label for="0">Dima</label> <input type="checkbox" class="form-control" name="dimanche" id="0" (click)="days($event)"></td>
+          <td><label for="1">Lundi</label> <input type="checkbox" class="form-control" name="lundi" id="1" (click)="days($event)"></td>
+          <td><label for="2">Mardi</label> <input type="checkbox" class="form-control" name="mardi" id="2" (click)="days($event)"></td>
+          <td><label for="3">Mercr</label> <input type="checkbox" class="form-control" name="mercredi" id="3" (click)="days($event)"></td>
+          <td><label for="4">Jeudi</label> <input type="checkbox" class="form-control" name="jeudi" id="4" (click)="days($event)"></td>
+          <td><label for="5">Vendr</label> <input type="checkbox" class="form-control" name="vendredi" id="5" (click)="days($event)"></td>
+          <td><label for="6">Samedi</label> <input type="checkbox" class="form-control" name="samedi" id="6" (click)="days($event)"></td>
+        </tr>
+        <tr>
+          <td colspan="3">
+            Nombre de groupes qui jouent par journée (max {{maxGroups}})
+          </td>
+          <td colspan="2">
+            <input type="number" class="form-control" name="" id="" [(ngModel)]="settings.groupPerDay">
+          </td>
+        </tr>
+        <tr>
+          <td colspan="6">
+            <p>Date de debut de la phases des groupes</p>
+            <nz-date-picker id="datepicker" [(ngModel)]="settings.startDay" (ngModelChange)="onChange($event)">
+            </nz-date-picker>
+          </td>
+        </tr>
+      </table>
+      <nz-alert nzType="warning" nzMessage="Minimum 1 groupe, maximum {{maxGroups}}" nzShowIcon
+        *ngIf="settings.groupPerDay> maxGroups || settings.groupPerDay<1"></nz-alert>
+      <button class="btn btn-success" (click)="generateCalendar()"
+        [disabled]="settings.groupPerDay > maxGroups || settings.groupPerDay<1
+        || this.settings.startDay ===null || (this.settings.predefinedDays && (this.settings.predefined.length === 0))">Nouveau calendrier</button>
+    </div>
+  </div>
+
+  <div class="row mt-5">
+    <div class="col-12 d-flex flex-wrap justify-content-center" id="table_schedule">
+    </div>
+    <div class="col-12 mt-5 mb-5 justify-content-center" *ngIf="calendarExist">
+      <button (click)="saveCalendar()">Enregistrer ce calendrier</button>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-12 d-flex flex-wrap justify-content-center" id="existant_table">
+    </div>
+  </div>
+</div>
+</div>
