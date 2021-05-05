@@ -1,3 +1,7 @@
+ @import ".../../../../../sass/main.scss";
+
 .img{
-  max-height: 10vh;
+  @include respond(tablet){
+    min-width: 10vw;
+  }
 }

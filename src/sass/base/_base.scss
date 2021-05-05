@@ -1,0 +1,21 @@
+html {
+  //this define what 1rem is
+  font-size: 62.5%;
+
+  @include respond(phone) {
+    font-size: 50%;
+  }
+}
+
+body {
+  font-family: magical !important;
+  font-weight: 400;
+  /*font-size: 16px;*/
+  line-height: 1;
+  padding: 0 !important;
+}
+.container-fluid,
+.container,
+.row {
+  margin: 0;
+}

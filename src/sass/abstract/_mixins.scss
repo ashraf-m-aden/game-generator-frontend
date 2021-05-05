@@ -1,0 +1,64 @@
+@mixin clearfix {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin centerElement {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// MEDIA QUERY MANAGER
+/*
+0-600 px; phones
+600-900px; tablet
+900-1200px;tablet-landscape
+1200-1800px; desktop
+1800px+++;desktop
+*/
+/*
+breakpoints arguments choices
+-phone
+-tablet
+-tablet-land
+-big-desk
+
+1em = 16px
+*/
+@mixin respond($breakpoint) {
+  @if $breakpoint==phone {
+    @media (max-width: 37.5em) {
+      //600px
+      @content;
+    }
+  }
+  @if $breakpoint==tablet {
+    @media (max-width: 56.25em) {
+      //900px
+      @content;
+    }
+  }
+  @if $breakpoint==tablet-land {
+    @media (max-width: 75em) {
+      //1200px
+      @content;
+    }
+  }
+  @if $breakpoint==big-desk {
+    @media (min-width: 112.5em) {
+      //1800px
+      @content;
+    }
+  }
+}
+
+@mixin respond-phone {
+  @media (max-width: 600px) {
+    @content;
+  }
+}

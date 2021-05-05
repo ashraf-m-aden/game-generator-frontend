@@ -32,6 +32,9 @@
           <td><label for="1">Lundi</label> <input type="checkbox" class="form-control" name="lundi" id="1" (click)="days($event)"></td>
           <td><label for="2">Mardi</label> <input type="checkbox" class="form-control" name="mardi" id="2" (click)="days($event)"></td>
           <td><label for="3">Mercr</label> <input type="checkbox" class="form-control" name="mercredi" id="3" (click)="days($event)"></td>
+        </tr>
+        <tr class="mt-2" *ngIf="settings.predefinedDays">
+
           <td><label for="4">Jeudi</label> <input type="checkbox" class="form-control" name="jeudi" id="4" (click)="days($event)"></td>
           <td><label for="5">Vendr</label> <input type="checkbox" class="form-control" name="vendredi" id="5" (click)="days($event)"></td>
           <td><label for="6">Samedi</label> <input type="checkbox" class="form-control" name="samedi" id="6" (click)="days($event)"></td>
