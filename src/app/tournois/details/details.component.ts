@@ -145,10 +145,11 @@ export class DetailsComponent implements OnInit {
 
   // permet de preparer les dates de jeux en avance et de les classer
   uniq(a) {
+    console.log(a);
+
     let array = Array.from(new Set(a));
     array = array.sort((b: string, c: string) => {
-      console.log(a + ' ' + b);
-      console.log(new Date(a) + ' ' + new Date(b));
+      console.log(new Date(c) + ' ' + new Date(b));
 
       if (new Date(b) > new Date(c)) {
         return 1;
