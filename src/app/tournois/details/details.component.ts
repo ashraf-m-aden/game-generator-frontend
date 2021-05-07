@@ -51,7 +51,7 @@ export class DetailsComponent implements OnInit {
         for (let index = 0; index < tournoi.groups; index++) {
           setTimeout(() => {
             this.generateTable(index + 1, this.teams);
-          }, 500);
+          }, 2000);
         }
         this.teamsPerGroup = (this.teams.length / tournoi.groups) - 1;
         if (tournoi.games.length > 0) {
@@ -60,7 +60,9 @@ export class DetailsComponent implements OnInit {
             allSchedule.push(tournoi.games[index].schedule);
           }
           this.savedCalendar = this.uniq(allSchedule);
-          this.loadTableSchedule();
+          setTimeout(() => {
+            this.loadTableSchedule();
+          }, 2000);
         }
       });
     });
