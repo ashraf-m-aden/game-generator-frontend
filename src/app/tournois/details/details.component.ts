@@ -147,6 +147,9 @@ export class DetailsComponent implements OnInit {
   uniq(a) {
     let array = Array.from(new Set(a));
     array = array.sort((b: string, c: string) => {
+      console.log(a + ' ' + b);
+      console.log(new Date(a) + ' ' + new Date(b));
+
       if (new Date(b) > new Date(c)) {
         return 1;
       }
