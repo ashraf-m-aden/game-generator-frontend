@@ -50,8 +50,12 @@
         <tr>
           <td colspan="6">
             <p>Date de debut de la phases des groupes</p>
-            <nz-date-picker id="datepicker" [(ngModel)]="settings.startDay" (ngModelChange)="onChange($event)">
-            </nz-date-picker>
+            <mat-form-field appearance="filled" color="accent" class="calendar">
+              <input matInput id="dateInput"  [matDatepicker]="picker" readonly (dateInput)="onChange($event)"/>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
           </td>
         </tr>
       </table>
@@ -67,7 +71,7 @@
     <div class="col-12 d-flex flex-wrap justify-content-center" id="table_schedule">
     </div>
     <div class="col-12 mt-5 mb-5 justify-content-center" *ngIf="calendarExist">
-      <button (click)="saveCalendar()">Enregistrer ce calendrier</button>
+      <button (click)="saveCalendar()" class="btn btn-group btn-danger">Enregistrer ce calendrier</button>
     </div>
   </div>
   <div class="row mt-5">

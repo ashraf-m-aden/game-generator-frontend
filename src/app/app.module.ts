@@ -1,9 +1,10 @@
+import { MatInputModule } from '@angular/material/input';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 
 import { AppRoutingModule, components } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
@@ -17,8 +18,10 @@ import { AllComponent } from './tournois/all/all.component';
 import { DetailsComponent } from './tournois/details/details.component';
 import { NewComponent } from './tournois/new/new.component';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
-import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { RedirectComponent } from './redirect/redirect.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatNativeDateModule } from '@angular/material/core';
 
 registerLocaleData(fr);
 
@@ -41,9 +44,17 @@ registerLocaleData(fr);
     BrowserAnimationsModule,
     NzModalModule,
     NzAlertModule,
-    NzDatePickerModule
-  ],
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatInputModule
+
+    ],
   providers: [{ provide: NZ_I18N, useValue: fr_FR }, NzModalService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas : [
+    CUSTOM_ELEMENTS_SCHEMA
+  ]
 })
 export class AppModule { }

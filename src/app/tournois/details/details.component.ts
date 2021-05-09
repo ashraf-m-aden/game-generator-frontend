@@ -5,6 +5,7 @@ import { EquipeService } from './../../services/equipe.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Game } from 'src/app/models/games';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-details',
@@ -73,8 +74,9 @@ export class DetailsComponent implements OnInit {
   }
 
   ////////////// tout ce qui est settings
-  onChange(result: Date[]): void {
-    this.date = result;
+  onChange(event: MatDatepickerInputEvent<Date>) {
+    this.date = event.value;
+    this.settings.startDay = event.value;
   }
 
 
@@ -145,11 +147,9 @@ export class DetailsComponent implements OnInit {
 
   // permet de preparer les dates de jeux en avance et de les classer
   uniq(a) {
-    console.log(a);
 
     let array = Array.from(new Set(a));
     array = array.sort((b: string, c: string) => {
-      console.log(new Date(c) + ' ' + new Date(b));
 
       if (new Date(b) > new Date(c)) {
         return 1;
@@ -480,9 +480,8 @@ export class DetailsComponent implements OnInit {
     // pour effacer les donneées de jeux, les dates et reinitiliser le startDate
     this.games = [];
     this.settings.dates = [];
-    const picker = document.getElementById('datepicker').children[0].children[0]
-      .children[0].getAttribute('ng-reflect-model'); // c'est la valeur du date picker
-    this.settings.startDay = new Date(picker);
+    const picker = document.getElementById('dateInput') as HTMLInputElement ;
+    this.settings.startDay = new Date(picker.value);
 
     switch (this.settings.away) {
       case true:
