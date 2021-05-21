@@ -1,0 +1,11 @@
+FROM lucee/lucee:5.3.6.61-nginx-tomcat9.0-jdk11-openjdk
+
+# configuring nginx
+
+COPY ./game-generator/nginx.config /etc/nginx/conf.d/default.conf
+COPY  ./game-generator/dist/game-generator/ /usr/share/nginx/html
+
+EXPOSE 8080 80
+WORKDIR /app
+COPY ./game/target/ .
+CMD ["java", "-jar -Dserver.port=8089", "game-0.0.1-SNAPSHOT.jar"]
