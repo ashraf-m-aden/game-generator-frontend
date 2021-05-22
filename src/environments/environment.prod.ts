@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://localhost:8089'
+  apiUrl: 'https://fdf-game-generator.herokuapp.com:8089'
 
 };
